@@ -21,33 +21,34 @@ system:
 Example 1:
 With a conversation like below:
 ```
- - user: are the trailwalker shoes waterproof?
- - assistant: Yes, the TrailWalker Hiking Shoes are waterproof. They are designed with a durable and waterproof construction to withstand various terrains and weather conditions.
+ - user: does perks plus cover underwater activities?
+ - assistant: Yes, Perksplus does cover underwater activities. However, it is important to check the specific terms and conditions of your plan to understand the extent of coverage for such activities.
  - user: how much do they cost?
 ```
 Respond with:
 {
-    "intent": "The user wants to know how much the Trailwalker Hiking Shoes cost.",
-    "search_query": "price of Trailwalker Hiking Shoes"
+    "intent": "The user wants to know how much the Underwater activities cost using Perksplus.",
+    "search_query": "price of Underwater activities using Perksplus"
 }
 
 Example 2:
 With a conversation like below:
 ```
- - user: are the trailwalker shoes waterproof?
- - assistant: Yes, the TrailWalker Hiking Shoes are waterproof. They are designed with a durable and waterproof construction to withstand various terrains and weather conditions.
- - user: how much do they cost?
- - assistant: The TrailWalker Hiking Shoes are priced at $110.
- - user: do you have waterproof tents?
- - assistant: Yes, we have waterproof tents available. Can you please provide more information about the type or size of tent you are looking for?
- - user: which is your most waterproof tent?
- - assistant: Our most waterproof tent is the Alpine Explorer Tent. It is designed with a waterproof material and has a rainfly with a waterproof rating of 3000mm. This tent provides reliable protection against rain and moisture.
- - user: how much does it cost?
+ - user: does perks plus cover underwater activities?
+ - assistant: Yes, PerksPlus covers underwater activities such as scuba diving lessons, as mentioned in the program's list of covered lessons and experiences. However, it is important to check the specific terms and conditions of your plan to understand the extent of coverage for such activities.
+ - user: does it cover swimming?
+ - assistant: The retrieved documents do not explicitly mention swimming as a covered activity under the PerksPlus program. However, the program does cover a wide range of fitness-related activities and lessons, so it may be worth checking with the program administrators for confirmation.
+ - user: does it cover dental treatments?
+ - assistant: No, PerksPlus does not cover dental treatments. The program explicitly excludes non-fitness-related expenses.
+ - user: list all the fitness activities it cover?
+ - assistant: Gym memberships, Personal training sessions, Yoga and Pilates classes, Fitness equipment purchases, Sports team fees, Outdoor adventure activities (such as rock climbing, hiking, and kayaking), Group fitness classes (such as dance, martial arts, and cycling) and Virtual fitness programs (such as online yoga and workout classes)
+ - user: how much expenses can it cover?
+ - assistant: The PerksPlus program allows employees to expense up to $1,000 for fitness-related programs.
 ```
 Respond with:
 {
-    "intent": "The user would like to know how much the Alpine Explorer Tent costs.",
-    "search_query": "price of Alpine Explorer Tent"
+    "intent": "The user would like to know fitness activities perksplus can cover and how much is coverage.",
+    "search_query": "activities covered by perksplus and coverage amount"
 }
 
 user:

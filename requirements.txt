@@ -1,3 +1,5 @@
+streamlit
+streamlit-extras
 azure-ai-projects
 azure-ai-inference[prompts]
 azure-identity
@@ -6,7 +8,5 @@ pandas
 python-dotenv
 opentelemetry-api
 prompty
-streamlit
-streamlit-extras
 azure-monitor-opentelemetry
 azure-ai-evaluation[remote]

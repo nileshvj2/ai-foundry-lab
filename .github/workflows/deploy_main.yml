@@ -48,8 +48,6 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          source deactivate
-          source venv/bin/activate
 
       - name: Install dependencies
         run: pip3 install -r requirements.txt

@@ -15,6 +15,8 @@ from azure.core.settings import settings
 
 st.set_page_config(layout="wide")
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 def main():    
     st.write(
     """

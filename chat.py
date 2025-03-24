@@ -15,6 +15,8 @@ from azure.core.settings import settings
 
 st.set_page_config(layout="wide")
 
+streaming_support = False  #Set to True if you want AOAI response in streaming mode, else keep False
+
 #Load environment variables
 load_dotenv("credentials.env",override=True)
 
@@ -44,12 +46,8 @@ print(connection)
 
 
 @tracer.start_as_current_span(name="create_chat_completion")
-def create_chat_completion(messages: list, context: dict = None)-> dict:
-    if context is None:
-        context = {}
+def create_chat_completion(messages: list, documents, context)-> dict:
 
-    #retrieve documents from the search index
-    documents = get_documents(messages, context)
 
     # do a grounded chat call using the search results
     grounded_chat_prompt = PromptTemplate.from_prompty(Path(PROMPTS_PATH) / "grounded_chat.prompty")
@@ -66,13 +64,13 @@ def create_chat_completion(messages: list, context: dict = None)-> dict:
         model=os.environ["CHAT_MODEL"],
         messages=system_message + messages,
         **grounded_chat_prompt.parameters,
-        stream=False,        
+        stream=streaming_support,        
     )
     print(response)
     logger.info(f"💬 Response: {response}")
     
     # Return a chat protocol compliant response
-    return {"message": response.choices[0].message, "context": context}
+    return response #{"message": response.choices[0].message, "context": context}
     
 
 def handle_chat_prompt(prompt):
@@ -86,16 +84,27 @@ def handle_chat_prompt(prompt):
     # This function loops through the responses and displays them as they come in.
     # It also appends the full response to the chat history.
     full_response = ""
+
     with st.chat_message("assistant"):
         message_placeholder = st.empty()        
-        full_response = create_chat_completion(st.session_state.messages)
+        # if context is None:
+        context = {}
+        messages = st.session_state.messages 
+        # Retrieve documents from the search index
+        documents = get_documents(messages, context)
+        
 
         # Uncomment the following lines to enable streaming responses
-        # for response in create_chat_completion(st.session_state.messages):
-        #     full_response += (response["message"].content or "")
-        #     message_placeholder.markdown(full_response + "▌")
-        message_placeholder.markdown(full_response["message"].content)
-    st.session_state.messages.append({"role": "assistant", "content": full_response["message"].content})
+        if streaming_support:            
+            for response in create_chat_completion(messages, documents, context):
+                full_response += (response.choices[0].delta.content or "")
+                message_placeholder.markdown(full_response + "▌")
+            message_placeholder.markdown(full_response)  # Finalize the message by removing the streaming indicator
+        else:
+            response = create_chat_completion(messages, documents, context)
+            full_response = response.choices[0].message.content           
+            message_placeholder.markdown(full_response)
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
     
      
 def main():    

@@ -17,3 +17,9 @@ Perfect for beginners and practitioners wanting to build production-grade AI app
 
 ## Pre-reqs:
 AI Search Index is already created (using AI Foundry portal) and all required configurations provided in env file.
+
+
+## Disclaimer
+The information and code contained in this repo and any accompanying materials (including, but not limited to, scripts, sample codes, etc.) are provided “AS-IS” and “WITH ALL FAULTS.” by owner and contributors of the repo. 
+
+Code and information in this repo is provided solely for demonstration purposes and does not represent Microsoft or any other company's official documentation. Author assumes no liability arising from your use of this material.

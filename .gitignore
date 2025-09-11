@@ -1,6 +1,10 @@
 # Auto-generated files
 all_dependencies.txt
 
+# Development and testing files
+test_dependencies.py
+demo_dependencies.py
+
 # Environment and credentials
 .env
 credentials.env
